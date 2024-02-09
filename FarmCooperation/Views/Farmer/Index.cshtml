@@ -1,0 +1,20 @@
+﻿@model IEnumerable<FarmCooperation.Models.Farmer>
+@foreach (var item in Model)
+{
+    <div class="col-md-6 col-lg-3 ftco-animate">
+        <div class="product">
+            <a  class="img-prod">
+                <img class="img-fluid" src="@item.ImageUrl" alt="Colorlib Template">
+                <div class="overlay"></div>
+            </a>
+            <div class="text py-3 pb-4 px-3 text-center">
+                <h3><a href="#">@item.FirstName</a></h3>
+                <h3><a href="#">@item.LastName</a></h3>
+
+                <a href="/Farmer/Details?id=@item.Id"> 
+                    <span>Дізнатись більше</span></a>
+            </div>
+        </div>
+    </div>
+        
+}

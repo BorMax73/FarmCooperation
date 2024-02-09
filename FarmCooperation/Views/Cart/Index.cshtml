@@ -1,0 +1,76 @@
+﻿@model Order
+<section class="ftco-section ftco-cart">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 ftco-animate">
+				<div class="cart-list">
+					<table class="table">
+						<thead class="thead-primary">
+							<tr class="text-center">
+								<th>&nbsp;</th>
+								<th>&nbsp;</th>
+								<th>Назва товару</th>
+								<th>Ціна</th>
+								<th>Кількість</th>
+								<th>Сума</th>
+							</tr>
+						</thead>
+                        <tbody>
+                        @{ var total = 0.0;}
+						@if (Model.OrderItems.Count != 0)
+						{
+						    @foreach (var item in Model.OrderItems)
+						    {
+						        <tr class="text-center">
+                                    <td class="product-remove"><a href="/Cart/Delete?id=@item.ArticleId"><span class="ion-ios-close"></span></a></td>
+
+                                    <td class="image-prod">
+                                        <img class="img" src="@item.Article.Image.ImageUrl"></img></td>
+
+                                    <td class="product-name">
+                                        <h3>@item.Article.Title</h3>
+                                    </td>
+
+                                    <td class="price">@item.Article.Price</td>
+
+                                    <td class="quantity">
+                                        <div class="input-group mb-3">
+                                            <input type="text" name="quantity" class="quantity form-control input-number" value="@item.Quantity" min="1" max="100">
+                                        </div>
+                                    </td>
+                                    @{
+                                        var totalPrice = item.Article.Price * item.Quantity;
+                                        total += totalPrice;
+                                    }
+                                    <td class="total">@totalPrice</td>
+                                </tr>
+						        <!-- END TR-->
+						    }
+						}
+                        </tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="row justify-content-end">
+			<div class="col-lg-4 mt-5 cart-wrap ftco-animate">
+				
+			</div>
+			<div class="col-lg-4 mt-5 cart-wrap ftco-animate">
+				
+			</div>
+			<div class="col-lg-4 mt-5 cart-wrap ftco-animate">
+				<div class="cart-total mb-3">
+					<h3>Загальна сума</h3>
+                    <hr>
+					
+					<p class="d-flex total-price">
+						<span>Сума:</span>
+						<span>@total</span>
+					</p>
+				</div>
+				<p><a href="/Cart/Checkout" class="btn btn-primary py-3 px-4">Оформити замовлення</a></p>
+			</div>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Товари";
+}
+
+@model IEnumerable<Article>
+<section class="ftco-section">
+    <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-10 mb-5 text-center">
+            <ul class="product-category">
+                <li><a href="/Article" class="active">Усі</a></li>
+                    <li><a href="/Article/Category?id=1">Сири</a></li>
+                    <li><a href="/Article/Category?id=2">Молочні продукти</a></li>
+                    <li><a href="/Article/Category?id=3">М'ясо та яйця</a></li>
+                    <li><a href="/Article/Category?id=4">Фрукти та овочі</a></li>
+            </ul>
+        </div>
+    </div>
+    </div>
+    <div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-6 col-lg-3 ftco-animate">
+            <div class="product">
+                    <a  class="img-prod">
+                    <img class="img-fluid" src="@item.Image.ImageUrl" alt="Colorlib Template">
+                    <div class="overlay"></div>
+                </a>
+                <div class="text py-3 pb-4 px-3 text-center">
+                    <h3><a href="#">@item.Title</a></h3>
+                    <div>
+                            <p class="price"><span>@item.Price ₴</span></p>
+                    </div>
+                        <a href="/Article/Details?id=@item.Id"> 
+                        <span>Замовити</span></a>
+                </div>
+                </div>
+            </div>
+        
+    }
+    </div>
+</section>
